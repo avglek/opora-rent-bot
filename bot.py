@@ -2,8 +2,17 @@ import asyncio
 import logging
 
 from aiogram import Bot, Dispatcher
-
+from aiogram.client.default import DefaultBotProperties
+from aiogram.enums import ParseMode
 from config import Config, load_config
+
+# Импортируем роутеры
+# ...
+# Импортируем миддлвари
+# ...
+# Импортируем вспомогательные функции для создания нужных объектов
+# ...
+
 from src.handlers import echo
 
 
@@ -21,7 +30,10 @@ async def main():
 
     config: Config = load_config()
 
-    bot: Bot = Bot(token=config.tg_bot.token, parse_mode="HTML")
+    bot: Bot = Bot(
+        token=config.tg_bot.token,
+        default=DefaultBotProperties(parse_mode=ParseMode.HTML)
+        )
     dp: Dispatcher = Dispatcher()
 
     dp.include_router(echo.router)
@@ -29,9 +41,4 @@ async def main():
     await bot.delete_webhook(drop_pending_updates=True)
     await dp.start_polling(bot)
 
-
-if __name__ == "__main__":
-    try:
-        asyncio.run(main())
-    except (KeyboardInterrupt, SystemExit):
-        logger.info("Bot stopped")
+asyncio.run(main())

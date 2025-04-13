@@ -1,3 +1,5 @@
+import emoji
+
 LEXICON_RU: dict[str, str] = {
     # Commands
     '/start': 'Привет!\n\nВас приветствует бот компании "Опора"!\n\n'
@@ -20,8 +22,12 @@ LEXICON_RU: dict[str, str] = {
 }
 
 BUTONS_START: dict[str,str] = {
-    'init-1': 'Посмотреть каталог',
-    'init-2': 'Заказать аренду',
-    'init-3': 'Заказать расчет',
-    'init-4': 'Другие вопросы',
+    'review': 'Посмотреть каталог',
+    'rent': 'Заказать аренду',
+    'calculate': 'Заказать расчет',
+    'other': 'Другие вопросы',
+}
+
+BUTON_HOME:dict[str,str] = {
+    'home': emoji.emojize(':house: На главное меню')
 }

@@ -1,9 +1,9 @@
 FROM python:3.10-slim
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
 COPY requirements/ requirements/
 
@@ -13,4 +13,4 @@ RUN pip install --upgrade pip \
 
 COPY . .
 
-CMD ["python", "./bot.py"]
+CMD ["python", "./main.py"]

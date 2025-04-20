@@ -19,6 +19,7 @@ LEXICON_RU: dict[str, str] = {
     'but_5': 'Кнопка 5',
     'but_6': 'Кнопка 6',
     'but_7': 'Кнопка 7',
+    'but_back':emoji.emojize(':left_arrow: Назад')
 }
 
 BUTONS_START: dict[str,str] = {

@@ -1,6 +1,7 @@
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 from src.lexicon.lexicon_ru import LEXICON_RU
+from src.models import RentCallbackFactory
 
 
 # Функция для формирования инлайн-клавиатуры на лету
@@ -33,5 +34,13 @@ def create_inline_kb(width: int,
 def get_category_keyboard()->InlineKeyboardMarkup:
 
     kb_builder = InlineKeyboardBuilder()
+
+    return kb_builder.as_markup
+
+def generate_from_db(width: int,
+                     *arg: RentCallbackFactory
+                      )->InlineKeyboardMarkup:
+    kb_builder = InlineKeyboardBuilder()
+    buttons: list[InlineKeyboardButton] = []
 
     return kb_builder.as_markup

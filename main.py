@@ -33,6 +33,7 @@ async def main():
 
     # Инициализируем объект хранилища
     # storage = ...
+    logger.info(f"TOKEN: {config.tg_bot.token}")
 
     # Инициализируем бот и диспетчер
     bot = Bot(

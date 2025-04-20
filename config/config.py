@@ -30,10 +30,12 @@ class Config:
 
 def load_config() -> Config:
     # Parse a `.env` file and load the variables into environment valriables
-    load_dotenv()
+    load_dotenv("/Users/aleksandr/dev/projects/opora-ren/opora-rent-bot/.env")
+
+    print(f"Parse dot env:{getenv('BOT_TOKEN')}")
 
     return Config(
-        tg_bot=TelegramBotConfig(token=getenv("BOT_TOKEN")),
+        tg_bot=TelegramBotConfig(token=getenv("BOT_TOKEN_REZ")),
         db=DataBaseConfig(
             database=getenv('DATABASE'),
             host=getenv('DB_HOST'),

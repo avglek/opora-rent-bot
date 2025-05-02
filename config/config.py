@@ -26,11 +26,12 @@ class DataBaseConfig:
 class Config:
     tg_bot: TelegramBotConfig
     db: DataBaseConfig
+    path_img:str
 
 
 def load_config() -> Config:
     # Parse a `.env` file and load the variables into environment valriables
-    load_dotenv("/Users/aleksandr/dev/projects/opora-ren/opora-rent-bot/.env")
+    load_dotenv()
 
     print(f"Parse dot env:{getenv('BOT_TOKEN')}")
 
@@ -42,5 +43,6 @@ def load_config() -> Config:
             user=getenv('DB_USER'),
             password=getenv('DB_PASSWORD'),
             localdb=getenv('LOCAL_DB_PATH')
-        )
+        ),
+        path_img=getenv('PATH_IMG')
     )

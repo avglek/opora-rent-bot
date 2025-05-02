@@ -4,6 +4,7 @@ import logging
 from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
+from aiogram.fsm.storage.memory import MemoryStorage
 from config import Config, load_config
 # Импортируем роутеры
 from src.handlers import other_handlers,user_handlers
@@ -32,8 +33,8 @@ async def main():
     config: Config = load_config()
 
     # Инициализируем объект хранилища
-    # storage = ...
-    logger.info(f"TOKEN: {config.tg_bot.token}")
+    storage = MemoryStorage()
+    # logger.info(f"TOKEN: {config.tg_bot.token}")
 
     # Инициализируем бот и диспетчер
     bot = Bot(
@@ -41,7 +42,7 @@ async def main():
         default=DefaultBotProperties(parse_mode=ParseMode.HTML)
     )
     #dp = Dispatcher(storage=storage)
-    dp = Dispatcher()
+    dp = Dispatcher(storage=storage)
 
     # Инициализируем другие объекты (пул соединений с БД, кеш и т.п.)
     # ...

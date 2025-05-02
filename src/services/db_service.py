@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 from src.models import Category,Base,Rent,Price,RentCallbackFactory,CategoryCallbackFactory,PriceCallbackFactory
 from config import Config,load_config
 
+
 config: Config = load_config()
 
 engine = create_engine(config.db.get_local_url())
@@ -23,7 +24,7 @@ def get_category()->dict[str,str]:
 
             return result
 
-def get_rents_by_id(id:int)->dict[str,str]:
+def get_rents_by_category_id(id:int)->dict[str,str]:
      with Session(autoflush=False,bind=engine) as db:
           # получение списка аренд в группе
           category =  db.get(Category,id)
@@ -43,3 +44,13 @@ def get_price_by_rent_id(id:int)->dict[str,str]:
         result = dict()
 
         result[PriceCallbackFactory(price_id=price.id).pack()] = str(price)
+
+def get_description_by_rent_id(id:int)->dict[str,str]:
+    with Session(autoflush=False,bind=engine) as db:
+        rent = db.get(Rent,id)
+
+        message = dict()
+
+        message['data'] = f'<b>{rent.name}</b>\n{rent.description}'
+        message['photo_file'] = f'{config.path_img}/{rent.img}'
+        return message

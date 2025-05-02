@@ -9,6 +9,3 @@ class CategoryCallbackFactory(CallbackData,prefix="category"):
 
 class PriceCallbackFactory(CallbackData,prefix="price"):
     price_id:int
-
-class BackCallbackFactory(CallbackData,prefix="back"):
-    back_prefix:str
